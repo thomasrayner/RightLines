@@ -9,7 +9,7 @@ export function createDecoType() {
 		{
 			gutterIconPath: iconPath,
 			gutterIconSize: "auto",
-			isWholeLine: true
+			rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed
 		}
 	);
 }
