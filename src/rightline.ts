@@ -1,23 +1,23 @@
 import * as vscode from 'vscode';
-const path = require('path');
-
-export const iconPath = __dirname + path.sep + "img" + path.sep + "rightarrow.png";
-export var ranges: vscode.Range[] = [];
-var decoType: vscode.TextEditorDecorationType;
-
-export function createDecoType() {
-	console.log("[RightLines] Creating deco type");
-	decoType = vscode.window.createTextEditorDecorationType(
-		{
-			gutterIconPath: iconPath,
-			gutterIconSize: "auto",
-			rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed
-		}
-	);
-}
+//const path = require('path');
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log("[RightLines] Extension activated");
+	console.log("[RightLines] Initializing components");
+	const iconPath = context.asAbsolutePath("out/img/rightarrow.png"); //__dirname + path.sep + "img" + path.sep + "rightarrow.png";
+	var ranges: vscode.Range[] = [];
+	var decoType: vscode.TextEditorDecorationType;
+
+	function createDecoType() {
+		console.log("[RightLines] Creating deco type");
+		decoType = vscode.window.createTextEditorDecorationType(
+			{
+				gutterIconPath: iconPath,
+				gutterIconSize: "auto",
+				rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed
+			}
+		);
+	}
 	createDecoType();
 
 	// TestGutterIcon
@@ -48,4 +48,4 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(ClearGutterIconDisposable);
 }
 
-export function deactivate() { }
+export function deactivate() {console.log("[RightLines] Extension deactivated")}
