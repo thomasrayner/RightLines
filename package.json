@@ -10,19 +10,27 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:rightline.TestGutterIcon",
-		"onCommand:rightline.ClearGutterIcon"
+		"onCommand:rightline.MarkThisLine",
+		"onCommand:rightline.ClearGutterIcon",
+		"onCommand:rightline.MarkArbitraryLine"
 	],
 	"main": "./out/rightline.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "rightline.TestGutterIcon",
-				"title": "Test Gutter Icon"
+				"command": "rightline.MarkThisLine",
+				"title": "Mark This Line",
+				"category": "RightLines"
 			},
 			{
 				"command": "rightline.ClearGutterIcon",
-				"title": "Clear Gutter Icons"
+				"title": "Clear RightLines Marks",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightline.MarkArbitraryLine",
+				"title": "Mark A Specific Line...",
+				"category": "RightLines"
 			}
 		]
 	},
