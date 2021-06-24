@@ -10,6 +10,12 @@ export function activate(context: vscode.ExtensionContext) {
 	var ranges: vscode.Range[] = [];
 	var decoType: vscode.TextEditorDecorationType;
 
+	function addLineToMark(position: vscode.Position) {
+		const range = new vscode.Range(position, position);
+		console.log("[RightLines] Pushing " + position.line + " to collection of positions to decorate");
+		ranges.push(range);
+	}
+
 	function createDecoType() {
 		console.log("[RightLines] Creating deco type");
 		decoType = vscode.window.createTextEditorDecorationType(
@@ -34,10 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const pos: vscode.Position = vscode.window.activeTextEditor ? 
 			vscode.window.activeTextEditor?.selection.start :
 			new vscode.Position(0, 0);
-		const range = new vscode.Range(pos, pos);
-
-		console.log("[RightLines] Pushing current position to collection of positions to decorate");
-		ranges.push(range);
+		addLineToMark(pos);
 
 		console.log("[RightLines] Decorating lines");
 		vscode.window.activeTextEditor?.setDecorations(decoType, ranges);
@@ -74,7 +77,7 @@ export function activate(context: vscode.ExtensionContext) {
 		lineNumber = Number.parseInt(userLine ? userLine : "");
 
 		if (Number.isInteger(lineNumber)) {
-			console.log("[RightLines] User input converted to number");
+			console.log("[RightLines] User input converted to number (minus 1 to match document numbering): " + (lineNumber - 1));
 		}
 		else {
 			console.log("[RightLines] User input was not a number");
@@ -92,10 +95,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.executeCommand('rightline.ClearGutterIcon');
 		
 		const pos = new vscode.Position(lineNumber - 1, 0);
-		const range = new vscode.Range(pos, pos);
-
-		console.log("[RightLines] Pushing current position to collection of positions to decorate");
-		ranges.push(range);
+		addLineToMark(pos);
 
 		console.log("[RightLines] Decorating lines");
 		vscode.window.activeTextEditor?.setDecorations(decoType, ranges);
@@ -103,6 +103,55 @@ export function activate(context: vscode.ExtensionContext) {
 		console.log("[RightLines] MarkArbitraryLine finished");
 	});
 	context.subscriptions.push(MarkArbitraryLine);
+
+	// MarkArbitraryMatchingLine
+	let MarkArbitraryMatchingLine = vscode.commands.registerCommand('rightline.MarkArbitraryMatchingLine', async () => {
+		console.log("[RightLines] MarkArbitraryMatchingLine called");
+		console.log("[RightLines] Finding location for mark");
+		
+		if (!vscode.window.activeTextEditor) {
+			console.log("[RightLines] There's no document open");
+			vscode.window.showErrorMessage("You don't have an open document to search in");
+			return;
+		}
+
+		const userPattern = await vscode.window.showInputBox({
+			prompt: "Mark lines that contain the value: "
+		});
+		console.log("[RightLines] User entered: " + userPattern);
+		
+		if (!userPattern || userPattern === "") {
+			console.log("[RightLines] User input was null");
+			vscode.window.showErrorMessage("You didn't enter a string to search for");
+			return;
+		}
+
+		console.log("[RightLines] Clearing other marks");
+		vscode.commands.executeCommand('rightline.ClearGutterIcon');
+	
+		const docLines = vscode.window.activeTextEditor.document.getText().split(/\n/);
+		var foundMatches = false;
+
+		for (var i = 0; i < docLines.length; i++) {
+			if (docLines[i].match(userPattern)) {
+				const pos = new vscode.Position(i, 0);
+				addLineToMark(pos);
+				foundMatches = true;
+			}
+		}
+
+		if (!foundMatches) {
+			console.log("[RightLines] Didn't find user input");
+			vscode.window.showWarningMessage("Could not find any lines that match your input: '" + userPattern + "'");
+			return;
+		}
+
+		console.log("[RightLines] Decorating lines");
+		vscode.window.activeTextEditor?.setDecorations(decoType, ranges);
+
+		console.log("[RightLines] MarkArbitraryMatchingLine finished");
+	});
+	context.subscriptions.push(MarkArbitraryMatchingLine);
 }
 
 export function deactivate() {console.log("[RightLines] Extension deactivated");}

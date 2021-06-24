@@ -12,7 +12,8 @@
 	"activationEvents": [
 		"onCommand:rightline.MarkThisLine",
 		"onCommand:rightline.ClearGutterIcon",
-		"onCommand:rightline.MarkArbitraryLine"
+		"onCommand:rightline.MarkArbitraryLine",
+		"onCommand:rightline.MarkArbitraryMatchingLine"
 	],
 	"main": "./out/rightline.js",
 	"contributes": {
@@ -30,6 +31,11 @@
 			{
 				"command": "rightline.MarkArbitraryLine",
 				"title": "Mark A Specific Line...",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightline.MarkArbitraryMatchingLine",
+				"title": "Mark Lines Containing...",
 				"category": "RightLines"
 			}
 		]
