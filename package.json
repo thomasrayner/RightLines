@@ -10,31 +10,31 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:rightline.MarkThisLine",
-		"onCommand:rightline.ClearGutterIcon",
-		"onCommand:rightline.MarkArbitraryLine",
-		"onCommand:rightline.MarkArbitraryMatchingLine"
+		"onCommand:rightlines.MarkThisLine",
+		"onCommand:rightlines.ClearGutterIcon",
+		"onCommand:rightlines.MarkArbitraryLine",
+		"onCommand:rightlines.MarkArbitraryMatchingLine"
 	],
-	"main": "./out/rightline.js",
+	"main": "./out/rightlines.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "rightline.MarkThisLine",
+				"command": "rightlines.MarkThisLine",
 				"title": "Mark This Line",
 				"category": "RightLines"
 			},
 			{
-				"command": "rightline.ClearGutterIcon",
+				"command": "rightlines.ClearGutterIcon",
 				"title": "Clear RightLines Marks",
 				"category": "RightLines"
 			},
 			{
-				"command": "rightline.MarkArbitraryLine",
+				"command": "rightlines.MarkArbitraryLine",
 				"title": "Mark A Specific Line...",
 				"category": "RightLines"
 			},
 			{
-				"command": "rightline.MarkArbitraryMatchingLine",
+				"command": "rightlines.MarkArbitraryMatchingLine",
 				"title": "Mark Lines Containing...",
 				"category": "RightLines"
 			}

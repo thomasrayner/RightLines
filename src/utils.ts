@@ -8,15 +8,19 @@ export function setIconPath(path: string) {
     iconPath = path;
 }
 
+export function writeLog(entry: string) {
+    console.log("[RightLines] " + entry);
+}
+
 export function addLineToMark(position: vscode.Position) {
     const range = new vscode.Range(position, position);
-    console.log("[RightLines] Pushing " + position.line + " to collection of positions to decorate");
+    writeLog("Pushing " + position.line + " to collection of positions to decorate");
     ranges.push(range);
 }
 
 export function createDecoType(iconPath: string) {
-    console.log("[RightLines] Icon path: " + iconPath);
-    console.log("[RightLines] Creating deco type");
+    writeLog("Icon path: " + iconPath);
+    writeLog("Creating deco type");
     decoType = vscode.window.createTextEditorDecorationType(
         {
             gutterIconPath: iconPath,

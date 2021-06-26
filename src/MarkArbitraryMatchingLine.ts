@@ -2,11 +2,11 @@ import * as vscode from 'vscode';
 import * as utils from './utils';
 
 export async function MarkArbitraryMatchingLine() {
-    console.log("[RightLines] MarkArbitraryMatchingLine called");
-    console.log("[RightLines] Finding location for mark");
+    utils.writeLog("MarkArbitraryMatchingLine called");
+    utils.writeLog("Finding location for mark");
 
     if (!vscode.window.activeTextEditor) {
-        console.log("[RightLines] There's no document open");
+        utils.writeLog("There's no document open");
         vscode.window.showErrorMessage("You don't have an open document to search in");
         return;
     }
@@ -14,16 +14,16 @@ export async function MarkArbitraryMatchingLine() {
     const userPattern = await vscode.window.showInputBox({
         prompt: "Mark lines that contain the value: "
     });
-    console.log("[RightLines] User entered: " + userPattern);
+    utils.writeLog("User entered: " + userPattern);
 
     if (!userPattern || userPattern === "") {
-        console.log("[RightLines] User input was null");
+        utils.writeLog("User input was null");
         vscode.window.showErrorMessage("You didn't enter a string to search for");
         return;
     }
 
-    console.log("[RightLines] Clearing other marks");
-    vscode.commands.executeCommand('rightline.ClearGutterIcon');
+    utils.writeLog("Clearing other marks");
+    vscode.commands.executeCommand('rightlines.ClearGutterIcon');
 
     const docLines = vscode.window.activeTextEditor.document.getText().split(/\n/);
     var foundMatches = false;
@@ -37,13 +37,13 @@ export async function MarkArbitraryMatchingLine() {
     }
 
     if (!foundMatches) {
-        console.log("[RightLines] Didn't find user input");
+        utils.writeLog("Didn't find user input");
         vscode.window.showWarningMessage("Could not find any lines that match your input: '" + userPattern + "'");
         return;
     }
 
-    console.log("[RightLines] Decorating lines");
+    utils.writeLog("Decorating lines");
     vscode.window.activeTextEditor?.setDecorations(utils.decoType, utils.ranges);
 
-    console.log("[RightLines] MarkArbitraryMatchingLine finished");
+    utils.writeLog("MarkArbitraryMatchingLine finished");
 }
