@@ -6,7 +6,7 @@ export function ClearGutterIcon() {
     utils.decoType.dispose();
 
     utils.writeLog("Clearing out collection of positions to decorate");
-    utils.ranges.splice(0, utils.ranges.length);
+    utils.decorateRanges.splice(0, utils.decorateRanges.length);
 
     utils.createDecoType(utils.iconPath);
 }

@@ -5,6 +5,8 @@ import { ClearGutterIcon } from './commands/ClearGutterIcon';
 import { MarkArbitraryLine } from './commands/MarkArbitraryLine';
 import { MarkArbitraryMatchingLine } from './commands/MarkArbitraryMatchingLine';
 import { MarkSelectionMatchingLine } from './commands/MarkSelectionMatchingLine';
+import { DeleteArbitraryMatchingLine } from './commands/DeleteArbitraryMatchingLine';
+import { DeleteSelectionMatchingLine } from './commands/DeleteSelectionMatchingLine';
 
 export function activate(context: vscode.ExtensionContext) {
 	utils.writeLog("Extension activated");
@@ -18,6 +20,8 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.MarkArbitraryLine', MarkArbitraryLine));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.MarkArbitraryMatchingLine', MarkArbitraryMatchingLine));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.MarkSelectionMatchingLine', MarkSelectionMatchingLine));
+	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteArbitraryMatchingLine', DeleteArbitraryMatchingLine));
+	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteSelectionMatchingLine', DeleteSelectionMatchingLine));
 }
 
 export function deactivate() { utils.writeLog("Extension deactivated"); }

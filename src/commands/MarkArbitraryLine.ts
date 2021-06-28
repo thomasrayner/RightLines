@@ -36,7 +36,7 @@ export async function MarkArbitraryLine() {
     utils.addLineToMark(pos);
 
     utils.writeLog("Decorating lines");
-    vscode.window.activeTextEditor?.setDecorations(utils.decoType, utils.ranges);
+    vscode.window.activeTextEditor?.setDecorations(utils.decoType, utils.decorateRanges);
 
     utils.writeLog("MarkArbitraryLine finished");
 }

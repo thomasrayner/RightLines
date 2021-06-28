@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import * as utils from '../utils';
 
-export async function MarkSelectionMatchingLine() {
-    utils.writeLog("MarkSelectionMatchingLine called");
+export async function DeleteSelectionMatchingLine() {
+    utils.writeLog("DeleteSelectionMatchingLine called");
     const userPattern = vscode.window.activeTextEditor?.document.getText(vscode.window.activeTextEditor.selection);
     utils.writeLog("User entered: " + userPattern);
-    utils.decorateLinesThatMatchString(userPattern);
-    utils.writeLog("MarkSelectionMatchingLine finished");
+    utils.deleteLinesThatMatchString(userPattern);
+    utils.writeLog("DeleteSelectionMatchingLine finished");
 }
