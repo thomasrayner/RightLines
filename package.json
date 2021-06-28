@@ -13,7 +13,8 @@
 		"onCommand:rightlines.MarkThisLine",
 		"onCommand:rightlines.ClearGutterIcon",
 		"onCommand:rightlines.MarkArbitraryLine",
-		"onCommand:rightlines.MarkArbitraryMatchingLine"
+		"onCommand:rightlines.MarkArbitraryMatchingLine",
+		"onCommand:rightlines.MarkSelectionMatchingLine"
 	],
 	"main": "./out/rightlines.js",
 	"contributes": {
@@ -36,6 +37,11 @@
 			{
 				"command": "rightlines.MarkArbitraryMatchingLine",
 				"title": "Mark Lines Containing...",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightlines.MarkSelectionMatchingLine",
+				"title": "Mark Lines Containing Selected Text",
 				"category": "RightLines"
 			}
 		]

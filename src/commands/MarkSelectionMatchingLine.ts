@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import * as utils from './utils';
+import * as utils from '../utils';
 
-export async function MarkArbitraryMatchingLine() {
-    utils.writeLog("MarkArbitraryMatchingLine called");
+export async function MarkSelectionMatchingLine() {
+    utils.writeLog("MarkSelectionMatchingLine called");
     utils.writeLog("Finding location for mark");
 
     if (!vscode.window.activeTextEditor) {
@@ -11,14 +11,12 @@ export async function MarkArbitraryMatchingLine() {
         return;
     }
 
-    const userPattern = await vscode.window.showInputBox({
-        prompt: "Mark lines that contain the value: "
-    });
+    const userPattern = vscode.window.activeTextEditor.document.getText(vscode.window.activeTextEditor.selection);
     utils.writeLog("User entered: " + userPattern);
 
     if (!userPattern || userPattern === "") {
         utils.writeLog("User input was null");
-        vscode.window.showErrorMessage("You didn't enter a string to search for");
+        vscode.window.showErrorMessage("You don't have any text selected");
         return;
     }
 
