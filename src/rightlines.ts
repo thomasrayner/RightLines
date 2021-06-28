@@ -1,13 +1,16 @@
 import * as vscode from 'vscode';
 import * as utils from './utils';
-import { MarkThisLine } from './commands/MarkThisLine';
-import { ClearGutterIcon } from './commands/ClearGutterIcon';
-import { MarkArbitraryLine } from './commands/MarkArbitraryLine';
-import { MarkArbitraryMatchingLine } from './commands/MarkArbitraryMatchingLine';
-import { MarkSelectionMatchingLine } from './commands/MarkSelectionMatchingLine';
-import { DeleteArbitraryMatchingLine } from './commands/DeleteArbitraryMatchingLine';
-import { DeleteSelectionMatchingLine } from './commands/DeleteSelectionMatchingLine';
-import { DeleteEmptyLines } from './commands/DeleteEmptyLines';
+import { MarkThisLine } from './commands';
+import { ClearGutterIcon } from './commands';
+import { MarkArbitraryLine } from './commands';
+import { MarkArbitraryMatchingLine } from './commands';
+import { MarkSelectionMatchingLine } from './commands';
+import { DeleteArbitraryMatchingLine } from './commands';
+import { DeleteSelectionMatchingLine } from './commands';
+import { DeleteEmptyLines } from './commands';
+import { MarkDuplicateLines } from './commands';
+import { DeleteDuplicateLinesKeepFirst } from './commands';
+import { DeleteDuplicateLinesKeepLast } from './commands';
 
 export function activate(context: vscode.ExtensionContext) {
 	utils.writeLog("Extension activated");
@@ -24,6 +27,9 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteArbitraryMatchingLine', DeleteArbitraryMatchingLine));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteSelectionMatchingLine', DeleteSelectionMatchingLine));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteEmptyLines', DeleteEmptyLines));
+	context.subscriptions.push(vscode.commands.registerCommand('rightlines.MarkDuplicateLines', MarkDuplicateLines));
+	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteDuplicateLinesKeepFirst', DeleteDuplicateLinesKeepFirst));
+	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteDuplicateLinesKeepLast', DeleteDuplicateLinesKeepLast));
 }
 
 export function deactivate() { utils.writeLog("Extension deactivated"); }

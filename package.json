@@ -17,7 +17,10 @@
 		"onCommand:rightlines.MarkSelectionMatchingLine",
 		"onCommand:rightlines.DeleteArbitraryMatchingLine",
 		"onCommand:rightlines.DeleteSelectionMatchingLine",
-		"onCommand:rightlines.DeleteEmptyLines"
+		"onCommand:rightlines.DeleteEmptyLines",
+		"onCommand:rightlines.MarkDuplicateLines",
+		"onCommand:rightlines.DeleteDuplicateLinesKeepFirst",
+		"onCommand:rightlines.DeleteDuplicateLinesKeepLast"
 	],
 	"main": "./out/rightlines.js",
 	"contributes": {
@@ -60,6 +63,21 @@
 			{
 				"command": "rightlines.DeleteEmptyLines",
 				"title": "Delete Empty Lines",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightlines.MarkDuplicateLines",
+				"title": "Mark Duplicate Lines",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightlines.DeleteDuplicateLinesKeepFirst",
+				"title": "Delete Duplicate Lines (keep first occurence)",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightlines.DeleteDuplicateLinesKeepLast",
+				"title": "Delete Duplicate Lines (keep last occurence)",
 				"category": "RightLines"
 			}
 		]

@@ -112,11 +112,47 @@ export async function deleteLinesThatMatchString(pattern: string | RegExp | unde
         return;
     }
 
-    writeLog("Deleting lines");
+    deletePendingLines();
+}
+
+export function findDuplicateLines() {
+    writeLog("Called findDuplicateLines");
+
+    if (!vscode.window.activeTextEditor) {
+        writeLog("There's no document open");
+        vscode.window.showErrorMessage("You don't have an open document to search in");
+        return;
+    }
+
+    let lineMap = new Map();
+
+    const docLines = vscode.window.activeTextEditor.document.getText().split(/\n/);
+
+    for (var i = 0; i < docLines.length; i++) {
+        const line = docLines[i].trim();
+        const pos = new vscode.Position(i, 0);
+        const dup = lineMap.has(line);
+        let linesOn = [];
+
+        if (dup) {
+            linesOn = lineMap.get(line);
+
+            addLineToMark(pos);
+        }
+
+        linesOn.push(i);
+        lineMap.set(line, linesOn);
+    }
+
+    return lineMap;
+}
+
+export async function deletePendingLines() {
+    writeLog("Called deletePendingLines");
 
     await vscode.window.activeTextEditor?.edit((editBuilder: vscode.TextEditorEdit) => {
-        deleteRanges.forEach(r => {editBuilder.delete(r);});
+        deleteRanges.forEach(r => { editBuilder.delete(r); });
     });
-    
+
     deleteRanges.splice(0, deleteRanges.length);
 }
