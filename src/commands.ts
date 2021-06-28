@@ -167,6 +167,35 @@ export function MarkDuplicateLines(){
     utils.writeLog("MarkDuplicateLines finished");
 }
 
+export function MarkDuplicateLinesSkipFirst() {
+    utils.writeLog("MarkDuplicateLinesSkipFirst called");
+    const duplicateLines = utils.findDuplicateLines();
+
+    utils.writeLog("Clearing other marks");
+    vscode.commands.executeCommand('rightlines.ClearGutterIcon');
+
+    if (!duplicateLines || duplicateLines.size === 0) {
+        utils.writeLog("No duplicate lines found");
+        vscode.window.showInformationMessage("Did not find any duplicate lines");
+        return;
+    }
+
+    duplicateLines.forEach(r => {
+        if (r.length > 1) {
+            r.shift();
+            r.forEach((s: any) => {
+                const pos = new vscode.Position(s, 0);
+                utils.addLineToMark(pos);
+            });
+        }
+    });
+
+    utils.writeLog("Decorating lines");
+    vscode.window.activeTextEditor?.setDecorations(utils.decoType, utils.decorateRanges);
+
+    utils.writeLog("MarkDuplicateLinesSkipFirst finished");
+}
+
 export async function MarkSelectionMatchingLine() {
     utils.writeLog("MarkSelectionMatchingLine called");
     const userPattern = vscode.window.activeTextEditor?.document.getText(vscode.window.activeTextEditor.selection);

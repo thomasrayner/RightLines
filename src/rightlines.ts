@@ -11,6 +11,7 @@ import { DeleteEmptyLines } from './commands';
 import { MarkDuplicateLines } from './commands';
 import { DeleteDuplicateLinesKeepFirst } from './commands';
 import { DeleteDuplicateLinesKeepLast } from './commands';
+import { MarkDuplicateLinesSkipFirst } from './commands';
 
 export function activate(context: vscode.ExtensionContext) {
 	utils.writeLog("Extension activated");
@@ -30,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.MarkDuplicateLines', MarkDuplicateLines));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteDuplicateLinesKeepFirst', DeleteDuplicateLinesKeepFirst));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteDuplicateLinesKeepLast', DeleteDuplicateLinesKeepLast));
+	context.subscriptions.push(vscode.commands.registerCommand('rightlines.MarkDuplicateLinesSkipFirst', MarkDuplicateLinesSkipFirst));
 }
 
 export function deactivate() { utils.writeLog("Extension deactivated"); }

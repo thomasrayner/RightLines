@@ -20,7 +20,8 @@
 		"onCommand:rightlines.DeleteEmptyLines",
 		"onCommand:rightlines.MarkDuplicateLines",
 		"onCommand:rightlines.DeleteDuplicateLinesKeepFirst",
-		"onCommand:rightlines.DeleteDuplicateLinesKeepLast"
+		"onCommand:rightlines.DeleteDuplicateLinesKeepLast",
+		"onCommand:rightlines.MarkDuplicateLinesSkipFirst"
 	],
 	"main": "./out/rightlines.js",
 	"contributes": {
@@ -78,6 +79,11 @@
 			{
 				"command": "rightlines.DeleteDuplicateLinesKeepLast",
 				"title": "Delete Duplicate Lines (keep last occurence)",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightlines.MarkDuplicateLinesSkipFirst",
+				"title": "Mark Duplicate Lines (skip first occurrence)",
 				"category": "RightLines"
 			}
 		]
