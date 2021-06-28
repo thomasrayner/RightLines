@@ -7,6 +7,7 @@ import { MarkArbitraryMatchingLine } from './commands/MarkArbitraryMatchingLine'
 import { MarkSelectionMatchingLine } from './commands/MarkSelectionMatchingLine';
 import { DeleteArbitraryMatchingLine } from './commands/DeleteArbitraryMatchingLine';
 import { DeleteSelectionMatchingLine } from './commands/DeleteSelectionMatchingLine';
+import { DeleteEmptyLines } from './commands/DeleteEmptyLines';
 
 export function activate(context: vscode.ExtensionContext) {
 	utils.writeLog("Extension activated");
@@ -22,6 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.MarkSelectionMatchingLine', MarkSelectionMatchingLine));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteArbitraryMatchingLine', DeleteArbitraryMatchingLine));
 	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteSelectionMatchingLine', DeleteSelectionMatchingLine));
+	context.subscriptions.push(vscode.commands.registerCommand('rightlines.DeleteEmptyLines', DeleteEmptyLines));
 }
 
 export function deactivate() { utils.writeLog("Extension deactivated"); }

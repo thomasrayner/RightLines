@@ -16,7 +16,8 @@
 		"onCommand:rightlines.MarkArbitraryMatchingLine",
 		"onCommand:rightlines.MarkSelectionMatchingLine",
 		"onCommand:rightlines.DeleteArbitraryMatchingLine",
-		"onCommand:rightlines.DeleteSelectionMatchingLine"
+		"onCommand:rightlines.DeleteSelectionMatchingLine",
+		"onCommand:rightlines.DeleteEmptyLines"
 	],
 	"main": "./out/rightlines.js",
 	"contributes": {
@@ -54,6 +55,11 @@
 			{
 				"command": "rightlines.DeleteSelectionMatchingLine",
 				"title": "Delete Lines Containing Selected Text",
+				"category": "RightLines"
+			},
+			{
+				"command": "rightlines.DeleteEmptyLines",
+				"title": "Delete Empty Lines",
 				"category": "RightLines"
 			}
 		]

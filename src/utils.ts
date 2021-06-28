@@ -20,7 +20,11 @@ export function addLineToMark(position: vscode.Position) {
 }
 
 export function addLineToDelete(position: vscode.TextLine) {
-    const range = new vscode.Range(position.range.start, position.range.end);
+    const nextLine: boolean = vscode.window.activeTextEditor ?
+        position.range.end.line <= vscode.window.activeTextEditor.document.lineCount - 1 :
+        false;
+    const end = nextLine ? new vscode.Position(position.range.end.line + 1, 0) : position.range.end;
+    const range = new vscode.Range(position.range.start, end);
     writeLog("Pushing " + position.range.start.line + " to colleciton of positions to delete");
     deleteRanges.push(range);
 }
@@ -76,7 +80,7 @@ export function decorateLinesThatMatchString(pattern: string | undefined) {
     vscode.window.activeTextEditor?.setDecorations(decoType, decorateRanges);
 }
 
-export async function deleteLinesThatMatchString(pattern: string | undefined) {
+export async function deleteLinesThatMatchString(pattern: string | RegExp | undefined) {
     writeLog("Called deleteLinesThatMatch");
 
     if (!vscode.window.activeTextEditor) {
@@ -115,5 +119,4 @@ export async function deleteLinesThatMatchString(pattern: string | undefined) {
     });
     
     deleteRanges.splice(0, deleteRanges.length);
-
 }
