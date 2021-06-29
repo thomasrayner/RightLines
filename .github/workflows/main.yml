@@ -1,0 +1,32 @@
+name: DeployRightLines
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  BuildAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: '12.x'
+      - name: Build and Deploy RightLines VS Code Extension
+        run: |
+          npm install
+          npm install -g vsce
+          npm run compile
+          cp "./src/img" "./out" -r
+          vsce package
+      - name: Publish VS Code Extension
+        # uses: HaaLeo/publish-vscode-extension@aae4c55fd9e724685834ff0a9488ad57c8f3ecf1
+        uses: HaaLeo/publish-vscode-extension@v0
+        with:
+          pat: ${{ secrets.MARKETPLACEPAT }}
+          registryUrl: https://marketplace.visualstudio.com
+  
