@@ -9,6 +9,8 @@
 	"categories": [
 		"Other"
 	],
+	"publisher": "thmsrynr",
+	"icon": "RightLines.png",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thomasrayner/rightlines.git"
