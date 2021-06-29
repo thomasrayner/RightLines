@@ -2,6 +2,8 @@
 
 **RightLines** adds commands to Visual Studio Code to identify interesting lines, and clean up files by removing lines in a variety of ways.
 
+Install **RightLines** like any other extension in VS Code, or check it out here: [RightLines on the VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=thmsrynr.rightlines).
+
 ## Features
 
 ### Mark This Line
