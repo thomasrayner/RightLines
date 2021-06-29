@@ -9,6 +9,10 @@
 	"categories": [
 		"Other"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thomasrayner/rightlines.git"
+	},
 	"activationEvents": [
 		"onCommand:rightlines.MarkThisLine",
 		"onCommand:rightlines.ClearGutterIcon",
