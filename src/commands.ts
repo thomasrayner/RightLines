@@ -206,8 +206,11 @@ export async function MarkSelectionMatchingLine() {
 
 export function MarkThisLine() {
     utils.writeLog("MarkThisLine called");
-    utils.writeLog("Clearing other marks");
-    vscode.commands.executeCommand('rightlines.ClearGutterIcon');
+
+    if (vscode.workspace.getConfiguration('rightlines').ClearExistingMarksOnSingleMark) {
+        utils.writeLog("Clearing other marks");
+        vscode.commands.executeCommand('rightlines.ClearGutterIcon');
+    }
 
     utils.writeLog("Finding location for mark");
     const pos: vscode.Position = vscode.window.activeTextEditor ?
