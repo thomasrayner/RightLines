@@ -2,7 +2,7 @@
 	"name": "rightlines",
 	"displayName": "RightLines",
 	"description": "Remove duplicates, or lines matching selected text, and make such lines easily identifiable by marking them.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.29.0"
 	},
