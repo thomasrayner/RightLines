@@ -37,7 +37,9 @@ export function createDecoType(iconPath: string) {
         gutterIconSize: "auto",
         rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
         isWholeLine: true,
-        backgroundColor: new vscode.ThemeColor("editor.findMatchHighlightBackground")
+        backgroundColor: new vscode.ThemeColor("editor.findMatchHighlightBackground"),
+        overviewRulerColor: new vscode.ThemeColor("minimap.infoHighlight"),
+        overviewRulerLane: vscode.OverviewRulerLane.Full,
     });
 }
 
