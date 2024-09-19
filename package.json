@@ -92,7 +92,18 @@
 				"title": "Mark Duplicate Lines (skip first occurrence)",
 				"category": "RightLines"
 			}
-		]
+		],
+		"configuration": {
+			"type": "object",
+			"title": "RightLines configuration",
+			"properties": {
+				"rightlines.ClearExistingMarksOnSingleMark": {
+					"type": "boolean",
+					"default": false,
+					"description": "When marking a line using the 'Mark This Line' command, should the existing marks be cleared?"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
